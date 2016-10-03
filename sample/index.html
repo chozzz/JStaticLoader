@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="JStaticLoader">
+    <meta name="author" content="chozzz">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../src/jstaticloader.js"></script>
+</head>
+<body>
+    <h1 class="text-center"> JS Static Files Loader </h1>
+    <div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="text-center">
+            <h3 id="message" class="lead"> Loading all static files.. </h3>
+            <em id="info" class="text-info"></em>
+        </div>
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener("DOMContentLoaded", function () {
+            var pathUrls = [
+                "http://www.newhdwallpaper.in/wp-content/uploads/2014/09/Beautiful-stylish-girl-goggles-wear.jpg",
+                "http://3.bp.blogspot.com/-bEdZwFTDr1U/U6179Tym1MI/AAAAAAAALnI/3luV89J-a-Q/s1600/cute-and-beautiful-girls-wallpapers-043.jpg",
+                "http://2.bp.blogspot.com/-z6vG8XPUh4Q/U617sotUQZI/AAAAAAAALmE/_kilY4WRcv4/s1600/cute-and-beautiful-girls-wallpapers-005.jpg",
+                "http://4.bp.blogspot.com/-i8BnSVnPk1k/U6178dnt6cI/AAAAAAAALm4/gBfAwC0A0to/s1600/cute-and-beautiful-girls-wallpapers-029.jpg",
+                "http://2.bp.blogspot.com/--CkioLDLfSQ/U6178L0L8WI/AAAAAAAALm0/22PqjFm3Xrg/s1600/cute-and-beautiful-girls-wallpapers-031.jpg",
+                "http://mobileyaari.com/wp-content/uploads/2014/09/England-Girl.jpg",
+                "http://www.hutui6.com/data/out/86/68160382-girls-wallpapers.jpg",
+                "https://raw.githubusercontent.com/zemirco/sf-city-lots-json/master/citylots.json"
+            ];
+
+            JStaticLoader(pathUrls, {
+                images: ['jpg', 'png', 'jpeg', 'bmp'],
+                files: ['xml', 'html', 'json'],
+                verbose: false
+            }, function (vals, totalTime) {
+                /* Success */
+                var infoMessage = "Took " + (totalTime / 1000).toFixed(5) + " seconds";
+                $("#message").text("All static files have been loaded successfully");
+                $("#info").text(infoMessage + " -- (Check in your dev tools for details)");
+            }, function (error, totalTime) {
+                /* Error */
+                console.warn(error, totalTime);
+                var infoMessage = "Took " + (totalTime / 1000).toFixed(5) + " seconds";
+                $("#message").text("Some of static files are failed to load");
+                $("#info").text(infoMessage + " -- (Check in your dev tools for details)");
+            });
+        });
+    </script>
+</body>
+</html>
