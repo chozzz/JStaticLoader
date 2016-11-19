@@ -31,7 +31,7 @@ var JStaticLoader = function (urls, options, successCallbackFn, errorCallbackFn)
                     var img = new Image();
                     img.onload = function () {
                         log("Successfully load image file", path);
-                        resolve(img);
+                        resolve(path);
                     };
                     img.onerror = function () {
                         log("Failed to load image file", path);
@@ -46,7 +46,7 @@ var JStaticLoader = function (urls, options, successCallbackFn, errorCallbackFn)
                     var xhr = new XMLHttpRequest();
                     xhr.onload = function () {
                         log("Successfully load document file", path);
-                        resolve(xhr);
+                        resolve(path);
                     };
                     xhr.onerror = function () {
                         log("Failed to load document file", path);
